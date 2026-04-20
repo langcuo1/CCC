@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript 基础知识练习</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Microsoft YaHei", Arial, sans-serif;
+      background: #f0f4f8;
+      color: #333;
+      padding: 30px 20px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      color: #2c3e50;
+      margin-bottom: 30px;
+      border-bottom: 3px solid #3498db;
+      padding-bottom: 10px;
+    }
+    .section {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 24px;
+      padding: 24px 28px;
+    }
+    .section h2 {
+      font-size: 1.2rem;
+      color: #2980b9;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section h2 .badge {
+      background: #3498db;
+      color: #fff;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    pre {
+      background: #1e272e;
+      color: #dfe6e9;
+      border-radius: 6px;
+      padding: 14px 18px;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      overflow-x: auto;
+      margin-bottom: 12px;
+    }
+    .output-box {
+      background: #eaf4fb;
+      border-left: 4px solid #3498db;
+      border-radius: 4px;
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      min-height: 40px;
+    }
+    .output-label {
+      font-size: 0.78rem;
+      color: #7f8c8d;
+      margin-bottom: 4px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    /* 互动计算器 */
+    .calc-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .calc-row input {
+      width: 90px;
+      padding: 8px 10px;
+      border: 2px solid #bdc3c7;
+      border-radius: 6px;
+      font-size: 1rem;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .calc-row input:focus { border-color: #3498db; }
+    .calc-row select {
+      padding: 8px 10px;
+      border: 2px solid #bdc3c7;
+      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+      cursor: pointer;
+    }
+    .btn {
+      padding: 8px 20px;
+      background: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #2176ae; }
+    #calcResult {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #27ae60;
+      padding: 8px 14px;
+      background: #eafaf1;
+      border-radius: 6px;
+      border: 2px solid #a9dfbf;
+      min-width: 120px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h1>📘 JavaScript 基础知识练习</h1>
+
+<!-- ===== 1. 变量的定义 ===== -->
+<div class="section" id="sec1">
+  <h2><span class="badge">1</span> 变量的定义</h2>
+  <pre id="code1">
+// 三种变量声明方式：var、let、const
+var  oldStyle  = "我是 var 声明的变量（函数作用域）";
+let  blockVar  = "我是 let 声明的变量（块级作用域）";
+const PI       = 3.14159;          // const 声明常量，不可重新赋值
+
+// 重新赋值演示
+let score = 60;
+score = 85;                        // let 可以重新赋值
+
+// 输出
+console.log(oldStyle);
+console.log(blockVar);
+console.log("PI =", PI);
+console.log("score 重赋值后：", score);
+  </pre>
+  <div class="output-label">▶ 运行输出</div>
+  <div class="output-box" id="out1"></div>
+</div>
+
+<!-- ===== 2. 变量类型 ===== -->
+<div class="section" id="sec2">
+  <h2><span class="badge">2</span> 变量类型</h2>
+  <pre id="code2">
+// JavaScript 有 7 种基本数据类型
+let numInt    = 42;                // Number  整数
+let numFloat  = 3.14;             // Number  浮点数
+let str       = "Hello, World!";  // String  字符串
+let flag      = true;             // Boolean 布尔值
+let nothing   = null;             // Null    空值
+let undef;                        // Undefined 未定义
+let sym       = Symbol("id");     // Symbol  唯一标识
+
+// 引用类型
+let arr  = [1, 2, 3];            // Array   数组
+let obj  = { name: "张三", age: 20 }; // Object  对象
+
+// typeof 运算符检测类型
+console.log("numInt   typeof:", typeof numInt);
+console.log("str      typeof:", typeof str);
+console.log("flag     typeof:", typeof flag);
+console.log("nothing  typeof:", typeof nothing);  // 历史遗留：输出 "object"
+console.log("undef    typeof:", typeof undef);
+console.log("sym      typeof:", typeof sym);
+console.log("arr      typeof:", typeof arr);
+console.log("obj      typeof:", typeof obj);
+
+// 类型转换
+let numStr = "100";
+console.log("字符串转数字：", Number(numStr) + 1);   // 101
+console.log("数字转字符串：", String(numInt));         // "42"
+console.log("转布尔值(0)：",  Boolean(0));             // false
+console.log("转布尔值(1)：",  Boolean(1));             // true
+  </pre>
+  <div class="output-label">▶ 运行输出</div>
+  <div class="output-box" id="out2"></div>
+</div>
+
+<!-- ===== 3. 表达式 ===== -->
+<div class="section" id="sec3">
+  <h2><span class="badge">3</span> 表达式</h2>
+  <pre id="code3">
+// 算术运算符
+let a = 10, b = 3;
+console.log("a + b =", a + b);   // 13
+console.log("a - b =", a - b);   // 7
+console.log("a * b =", a * b);   // 30
+console.log("a / b =", a / b);   // 3.333...
+console.log("a % b =", a % b);   // 1  取余
+console.log("a ** b =", a ** b); // 1000 幂运算
+
+// 自增 / 自减
+let x = 5;
+console.log("x++ =", x++);  // 先用后增：5
+console.log("++x =", ++x);  // 先增后用：7
+
+// 比较运算符 → 返回 Boolean
+console.log("10 == '10'  :", 10 == "10");   // true  (宽松相等)
+console.log("10 === '10' :", 10 === "10");  // false (严格相等)
+console.log("10 !== 3    :", 10 !== 3);     // true
+
+// 逻辑运算符
+let t = true, f = false;
+console.log("t && f :", t && f);  // false
+console.log("t || f :", t || f);  // true
+console.log("!t     :", !t);      // false
+
+// 三元表达式
+let age = 18;
+let status = (age >= 18) ? "成年人" : "未成年人";
+console.log("age 18 →", status);
+
+// 字符串拼接 & 模板字面量
+let name = "小明";
+console.log("你好，" + name + "！");          // 传统拼接
+console.log(`你好，${name}！你今年 ${age} 岁。`); // 模板字面量
+  </pre>
+  <div class="output-label">▶ 运行输出</div>
+  <div class="output-box" id="out3"></div>
+</div>
+
+<!-- ===== 4. 流程控制 ===== -->
+<div class="section" id="sec4">
+  <h2><span class="badge">4</span> 流程控制</h2>
+  <pre id="code4">
+// ----- if / else if / else -----
+let grade = 78;
+let level;
+if (grade >= 90) {
+    level = "优秀";
+} else if (grade >= 75) {
+    level = "良好";
+} else if (grade >= 60) {
+    level = "及格";
+} else {
+    level = "不及格";
+}
+console.log(`成绩 ${grade} → 等级：${level}`);
+
+// ----- switch -----
+let day = new Date().getDay(); // 0=周日, 1=周一, ...
+let dayName;
+switch (day) {
+    case 0: dayName = "周日"; break;
+    case 1: dayName = "周一"; break;
+    case 2: dayName = "周二"; break;
+    case 3: dayName = "周三"; break;
+    case 4: dayName = "周四"; break;
+    case 5: dayName = "周五"; break;
+    case 6: dayName = "周六"; break;
+    default: dayName = "未知";
+}
+console.log("今天是：" + dayName);
+
+// ----- for 循环 -----
+let sum = 0;
+for (let i = 1; i <= 10; i++) {
+    sum += i;
+}
+console.log("1+2+...+10 =", sum);
+
+// ----- while 循环 -----
+let n = 1, factorial = 1;
+while (n <= 5) {
+    factorial *= n;
+    n++;
+}
+console.log("5! =", factorial);
+
+// ----- for...of 遍历数组 -----
+let fruits = ["苹果", "香蕉", "橙子"];
+let fruitStr = "";
+for (let fruit of fruits) {
+    fruitStr += fruit + " ";
+}
+console.log("水果列表：", fruitStr.trim());
+
+// ----- break / continue -----
+let result = "";
+for (let i = 0; i < 10; i++) {
+    if (i === 3) { result += "(跳过3) "; continue; }
+    if (i === 7) { result += "(在7处停止)"; break; }
+    result += i + " ";
+}
+console.log(result);
+  </pre>
+  <div class="output-label">▶ 运行输出</div>
+  <div class="output-box" id="out4"></div>
+</div>
+
+<!-- ===== 5. 函数 ===== -->
+<div class="section" id="sec5">
+  <h2><span class="badge">5</span> 函数</h2>
+  <pre id="code5">
+// ----- 函数声明 -----
+function greet(name) {
+    return `你好，${name}！欢迎学习 JavaScript。`;
+}
+console.log(greet("同学"));
+
+// ----- 函数表达式 -----
+const add = function(a, b) {
+    return a + b;
+};
+console.log("add(3, 5) =", add(3, 5));
+
+// ----- 箭头函数 -----
+const multiply = (a, b) => a * b;
+console.log("multiply(4, 6) =", multiply(4, 6));
+
+// ----- 默认参数 -----
+function power(base, exponent = 2) {
+    return Math.pow(base, exponent);
+}
+console.log("power(3)    =", power(3));      // 9
+console.log("power(2, 8) =", power(2, 8));   // 256
+
+// ----- 递归函数 -----
+function fibonacci(n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+let fibSeq = "";
+for (let i = 0; i < 8; i++) fibSeq += fibonacci(i) + " ";
+console.log("Fibonacci(0-7):", fibSeq.trim());
+
+// ----- 函数作为参数（高阶函数）-----
+function applyOperation(a, b, fn) {
+    return fn(a, b);
+}
+console.log("高阶函数 applyOperation(10, 4, 相减):", applyOperation(10, 4, (a, b) => a - b));
+
+// ----- 立即执行函数 (IIFE) -----
+const circleArea = (function(r) {
+    return (Math.PI * r * r).toFixed(2);
+})(5);
+console.log("半径5的圆面积:", circleArea);
+  </pre>
+  <div class="output-label">▶ 运行输出</div>
+  <div class="output-box" id="out5"></div>
+</div>
+
+<!-- ===== 6. 互动计算器 ===== -->
+<div class="section" id="sec6">
+  <h2><span class="badge">6</span> 综合练习：互动计算器</h2>
+  <p style="color:#7f8c8d;font-size:0.9rem;margin-bottom:12px;">
+    综合运用变量、表达式、流程控制与函数，实现一个简单计算器。
+  </p>
+  <div class="calc-row">
+    <input type="number" id="num1" value="10" />
+    <select id="operator">
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">×</option>
+      <option value="/">/</option>
+      <option value="%">%</option>
+      <option value="**">^</option>
+    </select>
+    <input type="number" id="num2" value="3" />
+    <button class="btn" onclick="calculate()">=</button>
+    <div id="calcResult">点击计算</div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   辅助函数：将 console.log 的输出捕获到页面指定元素
+   ============================================================ */
+function runAndCapture(fn, outputId) {
+  const lines = [];
+  const orig = console.log;
+  console.log = function(...args) {
+    lines.push(args.map(a => {
+      if (typeof a === 'object' && a !== null) {
+        try { return JSON.stringify(a); } catch(e) { return String(a); }
+      }
+      return String(a);
+    }).join(' '));
+    orig.apply(console, args);
+  };
+  try { fn(); } catch(e) { lines.push('❌ 错误: ' + e.message); }
+  console.log = orig;
+  document.getElementById(outputId).textContent = lines.join('\n');
+}
+
+/* ============================================================
+   第 1 节：变量的定义
+   ============================================================ */
+runAndCapture(function() {
+  var oldStyle = "我是 var 声明的变量（函数作用域）";
+  let blockVar = "我是 let 声明的变量（块级作用域）";
+  const PI     = 3.14159;
+
+  let score = 60;
+  score = 85;
+
+  console.log(oldStyle);
+  console.log(blockVar);
+  console.log("PI =", PI);
+  console.log("score 重赋值后：", score);
+}, "out1");
+
+/* ============================================================
+   第 2 节：变量类型
+   ============================================================ */
+runAndCapture(function() {
+  let numInt   = 42;
+  let numFloat = 3.14;
+  let str      = "Hello, World!";
+  let flag     = true;
+  let nothing  = null;
+  let undef;
+  let sym      = Symbol("id");
+  let arr      = [1, 2, 3];
+  let obj      = { name: "张三", age: 20 };
+
+  console.log("numInt   typeof:", typeof numInt);
+  console.log("str      typeof:", typeof str);
+  console.log("flag     typeof:", typeof flag);
+  console.log("nothing  typeof:", typeof nothing);
+  console.log("undef    typeof:", typeof undef);
+  console.log("sym      typeof:", typeof sym);
+  console.log("arr      typeof:", typeof arr);
+  console.log("obj      typeof:", typeof obj);
+
+  let numStr = "100";
+  console.log("字符串转数字：", Number(numStr) + 1);
+  console.log("数字转字符串：", String(numInt));
+  console.log("转布尔值(0)：",  Boolean(0));
+  console.log("转布尔值(1)：",  Boolean(1));
+}, "out2");
+
+/* ============================================================
+   第 3 节：表达式
+   ============================================================ */
+runAndCapture(function() {
+  let a = 10, b = 3;
+  console.log("a + b =", a + b);
+  console.log("a - b =", a - b);
+  console.log("a * b =", a * b);
+  console.log("a / b =", (a / b).toFixed(4));
+  console.log("a % b =", a % b);
+  console.log("a ** b =", a ** b);
+
+  let x = 5;
+  console.log("x++ =", x++);
+  console.log("++x =", ++x);
+
+  console.log("10 == '10'  :", 10 == "10");
+  console.log("10 === '10' :", 10 === "10");
+  console.log("10 !== 3    :", 10 !== 3);
+
+  let t = true, f = false;
+  console.log("t && f :", t && f);
+  console.log("t || f :", t || f);
+  console.log("!t     :", !t);
+
+  let age = 18;
+  let status = (age >= 18) ? "成年人" : "未成年人";
+  console.log("age 18 →", status);
+
+  let name = "小明";
+  console.log("你好，" + name + "！");
+  console.log(`你好，${name}！你今年 ${age} 岁。`);
+}, "out3");
+
+/* ============================================================
+   第 4 节：流程控制
+   ============================================================ */
+runAndCapture(function() {
+  let grade = 78;
+  let level;
+  if (grade >= 90)      level = "优秀";
+  else if (grade >= 75) level = "良好";
+  else if (grade >= 60) level = "及格";
+  else                  level = "不及格";
+  console.log(`成绩 ${grade} → 等级：${level}`);
+
+  let day = new Date().getDay();
+  const days = ["周日","周一","周二","周三","周四","周五","周六"];
+  let dayName;
+  switch (day) {
+    case 0: dayName = days[0]; break;
+    case 1: dayName = days[1]; break;
+    case 2: dayName = days[2]; break;
+    case 3: dayName = days[3]; break;
+    case 4: dayName = days[4]; break;
+    case 5: dayName = days[5]; break;
+    case 6: dayName = days[6]; break;
+    default: dayName = "未知";
+  }
+  console.log("今天是：" + dayName);
+
+  let sum = 0;
+  for (let i = 1; i <= 10; i++) sum += i;
+  console.log("1+2+...+10 =", sum);
+
+  let n = 1, factorial = 1;
+  while (n <= 5) { factorial *= n; n++; }
+  console.log("5! =", factorial);
+
+  let fruits = ["苹果", "香蕉", "橙子"];
+  let fruitStr = "";
+  for (let fruit of fruits) fruitStr += fruit + " ";
+  console.log("水果列表：", fruitStr.trim());
+
+  let result = "";
+  for (let i = 0; i < 10; i++) {
+    if (i === 3) { result += "(跳过3) "; continue; }
+    if (i === 7) { result += "(在7处停止)"; break; }
+    result += i + " ";
+  }
+  console.log(result);
+}, "out4");
+
+/* ============================================================
+   第 5 节：函数
+   ============================================================ */
+runAndCapture(function() {
+  function greet(name) {
+    return `你好，${name}！欢迎学习 JavaScript。`;
+  }
+  console.log(greet("同学"));
+
+  const add = function(a, b) { return a + b; };
+  console.log("add(3, 5) =", add(3, 5));
+
+  const multiply = (a, b) => a * b;
+  console.log("multiply(4, 6) =", multiply(4, 6));
+
+  function power(base, exponent = 2) {
+    return Math.pow(base, exponent);
+  }
+  console.log("power(3)    =", power(3));
+  console.log("power(2, 8) =", power(2, 8));
+
+  function fibonacci(n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+  }
+  let fibSeq = "";
+  for (let i = 0; i < 8; i++) fibSeq += fibonacci(i) + " ";
+  console.log("Fibonacci(0-7):", fibSeq.trim());
+
+  function applyOperation(a, b, fn) { return fn(a, b); }
+  console.log("高阶函数 applyOperation(10, 4, 相减):",
+    applyOperation(10, 4, (a, b) => a - b));
+
+  const circleArea = (function(r) {
+    return (Math.PI * r * r).toFixed(2);
+  })(5);
+  console.log("半径5的圆面积:", circleArea);
+}, "out5");
+
+/* ============================================================
+   第 6 节：互动计算器
+   ============================================================ */
+function calculate() {
+  const n1  = parseFloat(document.getElementById("num1").value);
+  const n2  = parseFloat(document.getElementById("num2").value);
+  const op  = document.getElementById("operator").value;
+  const box = document.getElementById("calcResult");
+
+  if (isNaN(n1) || isNaN(n2)) {
+    box.textContent = "请输入有效数字";
+    box.style.color = "#e74c3c";
+    return;
+  }
+
+  let res;
+  switch (op) {
+    case "+":  res = n1 + n2; break;
+    case "-":  res = n1 - n2; break;
+    case "*":  res = n1 * n2; break;
+    case "/":
+      if (n2 === 0) { box.textContent = "除数不能为 0"; box.style.color = "#e74c3c"; return; }
+      res = n1 / n2;
+      break;
+    case "%":
+      if (n2 === 0) { box.textContent = "除数不能为 0"; box.style.color = "#e74c3c"; return; }
+      res = n1 % n2;
+      break;
+    case "**": res = n1 ** n2; break;
+    default:   res = "未知运算";
+  }
+
+  // 保留最多 6 位小数
+  if (typeof res === "number") res = parseFloat(res.toFixed(6));
+  box.textContent = `结果：${res}`;
+  box.style.color = "#27ae60";
+}
+</script>
+
+</body>
+</html>
